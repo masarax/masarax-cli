@@ -1,6 +1,6 @@
 {
   "name": "@masarax/masarax-cli",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "MASARAX GitHub Content Downloader CLI",
   "type": "module",
   "bin": {
