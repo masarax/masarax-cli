@@ -4,6 +4,9 @@ import { downloadRecursive } from './downloader.js';
 import { formatItem } from './ui.js';
 import { t } from './lang/loader.js';
 import { changeDownloadLocation } from './configManager.js';
+import ora from 'ora';
+import path from 'path';
+import fs from 'fs/promises';
 
 let currentPath = '';
 const history = [];
