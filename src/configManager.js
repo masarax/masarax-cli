@@ -5,7 +5,7 @@ import inquirer from 'inquirer';
 import { t, setLanguage } from './lang/loader.js';
 
 const CONFIG_PATH = path.join(os.homedir(), '.masarax-cli', 'config.json');
-const DEFAULT_DOWNLOAD_DIR = path.join(os.homedir(), 'MASARAX_Downloads');
+const DEFAULT_DOWNLOAD_DIR = path.join(os.homedir(), 'Downloads', 'MASARAX_Downloads');
 
 // Initialize or load configuration
 export const initConfig = async () => {
