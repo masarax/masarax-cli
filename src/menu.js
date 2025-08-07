@@ -90,20 +90,20 @@ const showContentMenu = async (path, config) => {
   choices.push(
     new inquirer.Separator(),
     { 
-      name: t('back'), 
+      name: chalk.yellow(t('back')), 
       value: 'back',
       disabled: path === '' || history.length === 0
     },
     { 
-      name: downloadAllText, 
+      name: chalk.yellow(downloadAllText), 
       value: 'download_all' 
     },
     { 
-      name: t('change_location'), 
+      name: chalk.yellow(t('change_location')), 
       value: 'change_location' 
     },
     { 
-      name: t('exit'), 
+      name: chalk.yellow(t('exit')), 
       value: 'exit' 
     }
   );

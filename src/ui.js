@@ -18,14 +18,14 @@ export const formatItem = (item) => {
   const sizeMB = (item.size / (1024 * 1024)).toFixed(2);
   
   if (item.type === 'dir') {
-    return `${chalk.blue('📁')} ${chalk.bold(item.name)} ${chalk.gray(`(dir)`)}`;
+    return `${chalk.cyan.bold('📁')} ${chalk.cyan.bold(item.name)} ${chalk.gray(`(dir)`)}`;
   }
   
   if (item.name.startsWith('@masarax/')) {
     return `${chalk.magenta('◆')} ${chalk.bold(item.name)} ${chalk.gray(`(${sizeMB} MB)`)}`;
   }
   
-  return `${chalk.green('📄')} ${item.name} ${chalk.gray(`(${sizeMB} MB)`)}`;
+  return `${chalk.cyan.bold('📄')} ${chalk.cyan.bold(item.name)} ${chalk.gray(`(${sizeMB} MB)`)}`;
 };
 
 export const showDownloadProgress = (filename, downloaded, total) => {

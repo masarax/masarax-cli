@@ -1,3 +1,6 @@
+import fs from 'fs/promises';
+import { t } from './lang/loader.js';
+
 const REPO_OWNER = 'masarax';
 const REPO_NAME = 'masarax-assets';
 const API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents`;
