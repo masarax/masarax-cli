@@ -3,6 +3,8 @@ import { t } from './lang/loader.js';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import inquirer from 'inquirer';
+import { exec } from 'child_process';
 
 const NPM_REGISTRY_URL = 'https://registry.npmjs.org/@masarax/masarax-cli';
 
@@ -18,7 +20,30 @@ export const checkForUpdates = async () => {
     const latestVersion = response.data['dist-tags'].latest;
     
     if (latestVersion !== currentVersion) {
+      console.log(new inquirer.Separator());
       console.log(t('new_update', currentVersion, latestVersion));
+      console.log(new inquirer.Separator());
+      
+      const { confirmUpdate } = await inquirer.prompt([
+        {
+          type: 'confirm',
+          name: 'confirmUpdate',
+          message: t('update_prompt'),
+          default: true
+        }
+      ]);
+      
+      if (confirmUpdate) {
+        console.log(t('updating'));
+        exec('npm install -g @masarax/masarax-cli@latest', (error, stdout, stderr) => {
+          if (error) {
+            console.error(t('update_error', error.message));
+            return;
+          }
+          console.log(t('update_complete'));
+          console.log(stdout);
+        });
+      }
     }
   } catch (error) {
     // Fail silently or log error for debugging

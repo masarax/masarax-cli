@@ -11,5 +11,6 @@ export default {
   download_complete: "ডাউনলোড সম্পন্ন: {0}",
   download_failed: "ডাউনলোড ব্যর্থ: {0}",
   all_downloaded: "সমস্ত ফাইল সফলভাবে ডাউনলোড হয়েছে!",
+  thank_you_download: 'ডাউনলোড করার জন্য আপনাকে ধন্যবাদ!',
   new_update: "⚠️ নতুন আপডেট উপলব্ধ! ⚠️\nবর্তমান সংস্করণ: {0}\nসর্বশেষ সংস্করণ: {1}\n\nআপডেট করুন:\nnpm install -g @masarax/masarax-cli@latest"
 };

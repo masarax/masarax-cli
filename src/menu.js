@@ -52,9 +52,11 @@ export const showMainMenu = async (config) => {
         await fs.mkdir(path.dirname(destPath), { recursive: true });
         await downloadFile(choice.url, destPath);
         spinner.succeed(t('download_complete', destPath));
+        console.log(chalk.green.bold(t('thank_you_download')));
       } catch (error) {
         spinner.fail(t('download_failed', error.message));
       }
+      continue; // Continue to show the menu
     }
     
     if (choice === 'download_all') {
@@ -114,7 +116,7 @@ const showContentMenu = async (path, config) => {
     name: 'selected',
     message: t('select_download'),
     choices,
-    pageSize: 20
+    pageSize: 30
   });
 
   return selected;

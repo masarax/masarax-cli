@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import { t } from './lang/loader.js';
 
 export const showWelcomeBanner = () => {
-  console.log(chalk.magenta(`
+  console.log(chalk.blue(`
   ███╗   ███╗ █████╗ ███████╗ █████╗ ██████╗  █████╗    ██╗    ╔██╗
   ████╗ ████║██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗   ╚██╗   ██╔╝
   ██╔████╔██║███████║███████╗███████║██████╔╝███████║      ╚███╔╝ 

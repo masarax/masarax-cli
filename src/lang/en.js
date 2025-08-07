@@ -11,5 +11,6 @@ export default {
   download_complete: "Download complete: {0}",
   download_failed: "Download failed: {0}",
   all_downloaded: "All files downloaded successfully!",
+  thank_you_download: 'Thank you for your download!',
   new_update: "⚠️ New update available! ⚠️\nCurrent version: {0}\nLatest version: {1}\n\nUpdate with:\nnpm install -g @masarax/masarax-cli@latest"
 };
