@@ -1,4 +1,5 @@
 import inquirer from 'inquirer';
+import chalk from 'chalk';
 import { getContents } from './github.js';
 import { downloadRecursive } from './downloader.js';
 import { formatItem } from './ui.js';
