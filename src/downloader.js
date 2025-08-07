@@ -2,8 +2,6 @@ import fs from 'fs/promises';
 import path from 'path';
 import { getContents, downloadFile } from './github.js';
 import ora from 'ora';
-import { formatItem } from './ui.js';
-import { t } from './lang/loader.js';
 
 export const downloadRecursive = async (remotePath, downloadBase) => {
   const contents = await getContents(remotePath);
@@ -17,12 +15,12 @@ export const downloadRecursive = async (remotePath, downloadBase) => {
     if (item.type === 'dir') {
       await downloadRecursive(item.path, downloadBase);
     } else {
-      const spinner = ora(t('downloading', item.name)).start();
+      const spinner = ora(`Downloading: ${item.name}`).start();
       try {
         await downloadFile(item.url, itemPath);
-        spinner.succeed(t('download_complete', itemPath));
+        spinner.succeed(`Download complete: ${itemPath}`);
       } catch (error) {
-        spinner.fail(t('download_failed', error.message));
+        spinner.fail(`Download failed: ${error.message}`);
       }
     }
   }

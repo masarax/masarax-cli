@@ -2,7 +2,6 @@ import fs from 'fs/promises';
 import path from 'path';
 import os from 'os';
 import inquirer from 'inquirer';
-import { t, setLanguage } from './lang/loader.js';
 
 const CONFIG_PATH = path.join(os.homedir(), '.masarax-cli', 'config.json');
 const DEFAULT_DOWNLOAD_DIR = path.join(os.homedir(), 'Downloads', 'MASARAX_Downloads');
@@ -10,16 +9,18 @@ const DEFAULT_DOWNLOAD_DIR = path.join(os.homedir(), 'Downloads', 'MASARAX_Downl
 // Initialize or load configuration
 export const initConfig = async () => {
   let config = await loadConfig();
-  
+
+  // Always use English as default language
   if (!config.language) {
-    config = await setInitialLanguage(config);
+    config.language = 'en';
+    await saveConfig(config);
   }
-  
+
   if (!config.downloadDir) {
     config.downloadDir = DEFAULT_DOWNLOAD_DIR;
     await saveConfig(config);
   }
-  
+
   return config;
 };
 
@@ -36,28 +37,13 @@ const saveConfig = async (config) => {
   await fs.writeFile(CONFIG_PATH, JSON.stringify(config, null, 2));
 };
 
-const setInitialLanguage = async (config) => {
-  const { language } = await inquirer.prompt({
-    type: 'list',
-    name: 'language',
-    message: t('select_language'),
-    choices: [
-      { name: 'English', value: 'en' },
-      { name: 'বাংলা (Bangla)', value: 'bn' }
-    ]
-  });
-  
-  config.language = language;
-  setLanguage(language);
-  await saveConfig(config);
-  return config;
-};
+
 
 export const changeDownloadLocation = async () => {
   const { newPath } = await inquirer.prompt({
     type: 'input',
     name: 'newPath',
-    message: t('enter_download_path'),
+    message: 'Enter download path:',
     default: DEFAULT_DOWNLOAD_DIR,
     validate: async (input) => {
       try {
@@ -68,7 +54,7 @@ export const changeDownloadLocation = async () => {
           await fs.mkdir(input, { recursive: true });
           return true;
         } catch {
-          return t('invalid_path');
+          return 'Invalid path. Please enter a valid directory path.';
         }
       }
     }

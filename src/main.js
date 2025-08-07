@@ -13,10 +13,13 @@ const main = async () => {
       // Ignore error if chcp is not available
     }
   }
+
+  // Initialize config and language first
+  const config = await initConfig();
+
   showWelcomeBanner();
   await checkForUpdates();
-  
-  const config = await initConfig();
+
   await showMainMenu(config);
 };
 
